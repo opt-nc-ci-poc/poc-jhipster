@@ -48,7 +48,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
-        arguments: -Pprod check jacocoTestReport sonarqube build -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${{ github.repository_owner }} -Dsonar.projectKey=${{ github.repository_owner }}_jhipster-gradle
+        arguments: |
+          -Pprod check jacocoTestReport sonarqube build -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${{ github.repository_owner }} -Dsonar.projectKey=${{ github.repository_owner }}_jhipster-gradle
+          jib --image=ghcr.io/${{ github.repository }}:develop \
+              -Djib.container.creationTime=USE_CURRENT_TIMESTAMP \
+              -Djib.container.labels=org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository}}
         dependency-graph: generate-and-submit
 
     - uses: actions/upload-artifact@v3
