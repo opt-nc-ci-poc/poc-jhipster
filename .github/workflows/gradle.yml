@@ -39,7 +39,7 @@ jobs:
     - name: Build with Gradle
       uses: gradle/gradle-build-action@842c587ad8aa4c68eeba24c396e15af4c2e9f30a # v2.9.0
       with:
-        arguments: build
+        arguments: -Pprod build
         dependency-graph: generate-and-submit
 
     - uses: actions/upload-artifact@v3
@@ -60,4 +60,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
-        arguments: sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${{ github.repository_owner }} -Dsonar.projectKey=${{ github.repository_owner }}_jhipster-gradle
+        dependency-graph: disabled
+        arguments: -Pprod sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${{ github.repository_owner }} -Dsonar.projectKey=${{ github.repository_owner }}_jhipster-gradle
