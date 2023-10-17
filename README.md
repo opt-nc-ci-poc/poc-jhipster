@@ -1,4 +1,5 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=opt-nc-ci-poc_jhipster-gradle&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=opt-nc-ci-poc_jhipster-gradle)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=opt-nc-ci-poc_jhipster-gradle&metric=coverage)](https://sonarcloud.io/summary/new_code?id=opt-nc-ci-poc_jhipster-gradle)
 
 # jhipster-gh
 
