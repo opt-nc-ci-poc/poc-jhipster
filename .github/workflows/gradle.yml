@@ -40,8 +40,6 @@ jobs:
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar
 
-    - name: Install node.js packages
-      run: npm install
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
     - name: Build with Gradle
@@ -50,10 +48,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
-        arguments: -Pprod check jacocoTestReport sonarqube  -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${{ github.repository_owner }} -Dsonar.projectKey=${{ github.repository_owner }}_jhipster-gradle
+        arguments: -Pprod check jacocoTestReport sonarqube build -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${{ github.repository_owner }} -Dsonar.projectKey=${{ github.repository_owner }}_jhipster-gradle
         dependency-graph: generate-and-submit
 
     - uses: actions/upload-artifact@v3
       with:
-        name: Package
-        path: build/libs
+        name: app.jar
+        path: build/libs/*.jar
