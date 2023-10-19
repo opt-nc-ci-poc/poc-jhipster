@@ -27,8 +27,11 @@ public class JhipsterGhApp {
 
     private final Environment env;
 
+    private final boolean test = true;
+
     public JhipsterGhApp(Environment env) {
         this.env = env;
+        this.test = false;
     }
 
     /**
