@@ -50,6 +50,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           arguments: |
+            --info
             -Pprod check jacocoTestReport
             sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${{ github.repository_owner }} -Dsonar.projectKey=${{ github.repository_owner }}_jhipster-gradle
           dependency-graph: generate-and-submit

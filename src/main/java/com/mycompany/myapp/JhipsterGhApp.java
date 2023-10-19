@@ -27,6 +27,8 @@ public class JhipsterGhApp {
 
     private final Environment env;
 
+    private boolean test = true;
+
     public JhipsterGhApp(Environment env) {
         this.env = env;
     }
@@ -53,8 +55,11 @@ public class JhipsterGhApp {
             activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT) &&
             activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_CLOUD)
         ) {
+            test = false;
             log.error(
-                "You have misconfigured your application! It should not " + "run with both the 'dev' and 'cloud' profiles at the same time."
+                "You have misconfigured your application! It should not " +
+                "run with both the 'dev' and 'cloud' profiles at the same time. ({})",
+                test
             );
         }
     }
