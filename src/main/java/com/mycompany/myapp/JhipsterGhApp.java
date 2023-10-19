@@ -31,7 +31,6 @@ public class JhipsterGhApp {
 
     public JhipsterGhApp(Environment env) {
         this.env = env;
-        this.test = false;
     }
 
     /**
