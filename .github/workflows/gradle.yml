@@ -92,6 +92,6 @@ jobs:
       - name: 🚀 Deploy k8s
         if: github.ref == 'refs/heads/main'
         run: |-
-          kubectl apply -f k8s
-          kubectl rollout status deployment/jhipster-gradle
-          kubectl get services -o wide
+          kubectl -n opt-nc-ci-poc apply -f k8s
+          kubectl -n opt-nc-ci-poc rollout status deployment/jhipster-gradle
+          kubectl -n opt-nc-ci-poc get services -o wide
