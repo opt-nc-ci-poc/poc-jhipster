@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jhipster-gradle
+  namespace: opt-nc-ci-poc
+  labels:
+    app: jhipster-gradle
+spec:
+  selector:
+    app: jhipster-gradle
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
