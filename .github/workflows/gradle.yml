@@ -74,3 +74,24 @@ jobs:
           arguments: |
             jib --image=ghcr.io/${{ github.repository }}:develop -Djib.container.creationTime=USE_CURRENT_TIMESTAMP -Djib.container.labels=org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository}}
           dependency-graph: disable
+
+      # Setup gcloud CLI
+      - uses: google-github-actions/auth@v1
+        if: github.ref == 'refs/heads/main'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+          # Get the GKE credentials so we can deploy to the cluster
+      - uses: google-github-actions/get-gke-credentials@v1
+        if: github.ref == 'refs/heads/main'
+        with:
+          cluster_name: ${{ env.GKE_CLUSTER }}
+          location: ${{ env.GKE_ZONE }}
+
+      # Deploy the Docker image to the GKE cluster
+      - name: 🚀 Deploy k8s
+        if: github.ref == 'refs/heads/main'
+        run: |-
+          kubectl apply -f k8s
+          kubectl rollout status deployment/jhipster-gradle
+          kubectl get services -o wide
