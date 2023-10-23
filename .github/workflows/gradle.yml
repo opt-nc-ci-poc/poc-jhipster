@@ -85,8 +85,8 @@ jobs:
       - uses: google-github-actions/get-gke-credentials@v1
         if: github.ref == 'refs/heads/main'
         with:
-          cluster_name: ${{ env.GKE_CLUSTER }}
-          location: ${{ env.GKE_ZONE }}
+          cluster_name: ${{ vars.GKE_CLUSTER }}
+          location: ${{ vars.GKE_ZONE }}
 
       # Deploy the Docker image to the GKE cluster
       - name: 🚀 Deploy k8s
