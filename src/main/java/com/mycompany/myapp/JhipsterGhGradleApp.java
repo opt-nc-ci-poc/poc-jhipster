@@ -90,6 +90,7 @@ public class JhipsterGhGradleApp {
             "Application '{}' is running! Access URLs:\n\t" +
             "Local: \t\t{}://localhost:{}{}\n\t" +
             "External: \t{}://{}:{}{}\n\t" +
+            "Test: {}\n\t" +
             "Profile(s): \t{}\n----------------------------------------------------------",
             env.getProperty("spring.application.name"),
             protocol,
@@ -99,6 +100,7 @@ public class JhipsterGhGradleApp {
             hostAddress,
             serverPort,
             contextPath,
+            true,
             env.getActiveProfiles().length == 0 ? env.getDefaultProfiles() : env.getActiveProfiles()
         );
     }
