@@ -15,21 +15,22 @@
         <input type="text" class="form-control" name="login" formControlName="login" />
 
         <div *ngIf="editForm.get('login')!.invalid && (editForm.get('login')!.dirty || editForm.get('login')!.touched)">
-          <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.required" jhiTranslate="entity.validation.required"
-            >Ce champ est obligatoire.</small
-          >
+          <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.required" jhiTranslate="entity.validation.required">
+            Ce champ est obligatoire.
+          </small>
 
           <small
             class="form-text text-danger"
             *ngIf="editForm.get('login')?.errors?.maxlength"
             jhiTranslate="entity.validation.maxlength"
             [translateValues]="{ max: 50 }"
-            >Ce champ doit faire moins de 50 caractères.</small
           >
+            Ce champ doit faire moins de 50 caractères.
+          </small>
 
-          <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.pattern" jhiTranslate="entity.validation.patternLogin"
-            >Ce champ ne peut contenir que des lettres, des chiffres ou des adresses e-mail.</small
-          >
+          <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.pattern" jhiTranslate="entity.validation.patternLogin">
+            Ce champ ne peut contenir que des lettres, des chiffres ou des adresses e-mail.
+          </small>
         </div>
       </div>
 
@@ -43,8 +44,9 @@
             *ngIf="editForm.get('firstName')?.errors?.maxlength"
             jhiTranslate="entity.validation.maxlength"
             [translateValues]="{ max: 50 }"
-            >Ce champ doit faire moins de 50 caractères.</small
           >
+            Ce champ doit faire moins de 50 caractères.
+          </small>
         </div>
       </div>
 
@@ -58,8 +60,9 @@
             *ngIf="editForm.get('lastName')?.errors?.maxlength"
             jhiTranslate="entity.validation.maxlength"
             [translateValues]="{ max: 50 }"
-            >Ce champ doit faire moins de 50 caractères.</small
           >
+            Ce champ doit faire moins de 50 caractères.
+          </small>
         </div>
       </div>
 
@@ -68,32 +71,35 @@
         <input type="email" class="form-control" name="email" formControlName="email" />
 
         <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-          <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required"
-            >Ce champ est obligatoire.</small
-          >
+          <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
+            Ce champ est obligatoire.
+          </small>
 
           <small
             class="form-text text-danger"
             *ngIf="editForm.get('email')?.errors?.maxlength"
             jhiTranslate="entity.validation.maxlength"
             [translateValues]="{ max: 100 }"
-            >Ce champ doit faire moins de 100 caractères.</small
           >
+            Ce champ doit faire moins de 100 caractères.
+          </small>
 
           <small
             class="form-text text-danger"
             *ngIf="editForm.get('email')?.errors?.minlength"
             jhiTranslate="entity.validation.minlength"
             [translateValues]="{ min: 5 }"
-            >Ce champ doit faire au minimum 5 caractères.</small
           >
+            Ce champ doit faire au minimum 5 caractères.
+          </small>
 
           <small
             class="form-text text-danger"
             *ngIf="editForm.get('email')?.errors?.email"
             jhiTranslate="global.messages.validate.email.invalid"
-            >Votre email n'est pas valide.</small
           >
+            Votre email n'est pas valide.
+          </small>
         </div>
       </div>
 

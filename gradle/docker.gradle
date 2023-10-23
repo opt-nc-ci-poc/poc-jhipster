@@ -1,6 +1,6 @@
 jib {
     from {
-        image = "eclipse-temurin:17-jre-focal"
+        image = "eclipse-temurin:11-jre-focal"
         platforms {
             platform {
                 architecture = "${findProperty('jibArchitecture') ?: 'amd64'}"
@@ -9,7 +9,7 @@ jib {
         }
     }
     to {
-        image = "jhipster-gh:latest"
+        image = "jhipster_gh_gradle:latest"
     }
     container {
         entrypoint = ["bash", "-c", "/entrypoint.sh"]

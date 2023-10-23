@@ -1,36 +1,28 @@
 import { Component, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { AlertError } from './alert-error.model';
 import { Alert, AlertService } from 'app/core/util/alert.service';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
-import { AlertError } from './alert-error.model';
 
 @Component({
-  standalone: true,
   selector: 'jhi-alert-error',
   templateUrl: './alert-error.component.html',
-  imports: [CommonModule, NgbModule],
 })
 export class AlertErrorComponent implements OnDestroy {
   alerts: Alert[] = [];
   errorListener: Subscription;
   httpErrorListener: Subscription;
 
-  constructor(
-    private alertService: AlertService,
-    private eventManager: EventManager,
-    translateService: TranslateService,
-  ) {
-    this.errorListener = eventManager.subscribe('jhipsterGhApp.error', (response: EventWithContent<unknown> | string) => {
+  constructor(private alertService: AlertService, private eventManager: EventManager, translateService: TranslateService) {
+    this.errorListener = eventManager.subscribe('jhipsterGhGradleApp.error', (response: EventWithContent<unknown> | string) => {
       const errorResponse = (response as EventWithContent<AlertError>).content;
       this.addErrorAlert(errorResponse.message, errorResponse.key, errorResponse.params);
     });
 
-    this.httpErrorListener = eventManager.subscribe('jhipsterGhApp.httpError', (response: EventWithContent<unknown> | string) => {
+    this.httpErrorListener = eventManager.subscribe('jhipsterGhGradleApp.httpError', (response: EventWithContent<unknown> | string) => {
       const httpErrorResponse = (response as EventWithContent<HttpErrorResponse>).content;
       switch (httpErrorResponse.status) {
         // connection refused, server not reachable
@@ -60,14 +52,16 @@ export class AlertErrorComponent implements OnDestroy {
               }
               // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
               const convertedField: string = fieldError.field.replace(/\[\d*\]/g, '[]');
-              const fieldName: string = translateService.instant(`jhipsterGhApp.${fieldError.objectName as string}.${convertedField}`);
+              const fieldName: string = translateService.instant(
+                `jhipsterGhGradleApp.${fieldError.objectName as string}.${convertedField}`
+              );
               this.addErrorAlert(`Error on field "${fieldName}"`, `error.${fieldError.message as string}`, { fieldName });
             }
           } else if (httpErrorResponse.error !== '' && httpErrorResponse.error.message) {
             this.addErrorAlert(
               httpErrorResponse.error.detail ?? httpErrorResponse.error.message,
               httpErrorResponse.error.message,
-              httpErrorResponse.error.params,
+              httpErrorResponse.error.params
             );
           } else {
             this.addErrorAlert(httpErrorResponse.error, httpErrorResponse.error);
@@ -84,7 +78,7 @@ export class AlertErrorComponent implements OnDestroy {
             this.addErrorAlert(
               httpErrorResponse.error.detail ?? httpErrorResponse.error.message,
               httpErrorResponse.error.message,
-              httpErrorResponse.error.params,
+              httpErrorResponse.error.params
             );
           } else {
             this.addErrorAlert(httpErrorResponse.error, httpErrorResponse.error);

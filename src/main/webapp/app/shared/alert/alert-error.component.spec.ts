@@ -15,7 +15,8 @@ describe('Alert Error Component', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot(), AlertErrorComponent],
+      imports: [TranslateModule.forRoot()],
+      declarations: [AlertErrorComponent],
       providers: [EventManager, AlertService],
     })
       .overrideTemplate(AlertErrorComponent, '')
@@ -38,7 +39,7 @@ describe('Alert Error Component', () => {
   describe('Error Handling', () => {
     it('Should display an alert on status 0', () => {
       // GIVEN
-      eventManager.broadcast({ name: 'jhipsterGhApp.httpError', content: { status: 0 } });
+      eventManager.broadcast({ name: 'jhipsterGhGradleApp.httpError', content: { status: 0 } });
       // THEN
       expect(comp.alerts.length).toBe(1);
       expect(comp.alerts[0].translationKey).toBe('error.server.not.reachable');
@@ -46,7 +47,7 @@ describe('Alert Error Component', () => {
 
     it('Should display an alert on status 404', () => {
       // GIVEN
-      eventManager.broadcast({ name: 'jhipsterGhApp.httpError', content: { status: 404 } });
+      eventManager.broadcast({ name: 'jhipsterGhGradleApp.httpError', content: { status: 404 } });
       // THEN
       expect(comp.alerts.length).toBe(1);
       expect(comp.alerts[0].translationKey).toBe('error.url.not.found');
@@ -54,8 +55,8 @@ describe('Alert Error Component', () => {
 
     it('Should display an alert on generic error', () => {
       // GIVEN
-      eventManager.broadcast({ name: 'jhipsterGhApp.httpError', content: { error: { message: 'Error Message' } } });
-      eventManager.broadcast({ name: 'jhipsterGhApp.httpError', content: { error: 'Second Error Message' } });
+      eventManager.broadcast({ name: 'jhipsterGhGradleApp.httpError', content: { error: { message: 'Error Message' } } });
+      eventManager.broadcast({ name: 'jhipsterGhGradleApp.httpError', content: { error: 'Second Error Message' } });
       // THEN
       expect(comp.alerts.length).toBe(2);
       expect(comp.alerts[0].translationKey).toBe('Error Message');
@@ -77,7 +78,7 @@ describe('Alert Error Component', () => {
           message: 'error.validation',
         },
       });
-      eventManager.broadcast({ name: 'jhipsterGhApp.httpError', content: response });
+      eventManager.broadcast({ name: 'jhipsterGhGradleApp.httpError', content: response });
       // THEN
       expect(comp.alerts.length).toBe(1);
       expect(comp.alerts[0].translationKey).toBe('error.validation');
@@ -91,7 +92,7 @@ describe('Alert Error Component', () => {
         status: 400,
         error: 'Bad Request',
       });
-      eventManager.broadcast({ name: 'jhipsterGhApp.httpError', content: response });
+      eventManager.broadcast({ name: 'jhipsterGhGradleApp.httpError', content: response });
       // THEN
       expect(comp.alerts.length).toBe(1);
       expect(comp.alerts[0].translationKey).toBe('Bad Request');
@@ -113,7 +114,7 @@ describe('Alert Error Component', () => {
           fieldErrors: [{ objectName: 'foo', field: 'minField', message: 'Min' }],
         },
       });
-      eventManager.broadcast({ name: 'jhipsterGhApp.httpError', content: response });
+      eventManager.broadcast({ name: 'jhipsterGhGradleApp.httpError', content: response });
       // THEN
       expect(comp.alerts.length).toBe(1);
       expect(comp.alerts[0].translationKey).toBe('error.Size');
@@ -131,7 +132,7 @@ describe('Alert Error Component', () => {
           message: 'error.validation',
         },
       });
-      eventManager.broadcast({ name: 'jhipsterGhApp.httpError', content: response });
+      eventManager.broadcast({ name: 'jhipsterGhGradleApp.httpError', content: response });
       // THEN
       expect(comp.alerts.length).toBe(1);
       expect(comp.alerts[0].translationKey).toBe('Error Message');
@@ -150,7 +151,7 @@ describe('Alert Error Component', () => {
           detail: 'Detailed error message',
         },
       });
-      eventManager.broadcast({ name: 'jhipsterGhApp.httpError', content: response });
+      eventManager.broadcast({ name: 'jhipsterGhGradleApp.httpError', content: response });
       // THEN
       expect(comp.alerts.length).toBe(1);
       expect(comp.alerts[0].translationKey).toBe('error.http.500');
