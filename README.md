@@ -1,3 +1,6 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=opt-nc-ci-poc_jhipster-gradle&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=opt-nc-ci-poc_jhipster-gradle)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=opt-nc-ci-poc_jhipster-gradle&metric=coverage)](https://sonarcloud.io/summary/new_code?id=opt-nc-ci-poc_jhipster-gradle)
+
 # jhipster_gh_gradle
 
 This application was generated using JHipster 7.9.4, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.9.4](https://www.jhipster.tech/documentation-archive/v7.9.4).
