@@ -32,12 +32,14 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/jhipster-gh
-    username: jhipster-gh
+    url: jdbc:postgresql://localhost:5432/jhipster_gh_gradle
+    username: jhipster_gh_gradle
     password:
     hikari:
       poolName: Hikari
       auto-commit: false
+  jpa:
+    database-platform: tech.jhipster.domain.util.FixedPostgreSQL10Dialect
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
@@ -80,7 +82,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: YzMzYzk5MGZmMzAwN2U2OGRkOTQwOGVkNTVkNDg1YzJhZmMyYzNhOTQyNjZiZWQ1MmMwYTBlZDYxYjk0ZGE0ZWVkODcyMzI5Y2Q2OWZmYzBmMzg1ZWYzMzE2N2ZkYzk2NDAwMGRlOTQzZGMyN2RjMTFkN2NlZmVmNzhlYjRkOTI=
+        base64-secret: NDNmMDY0ZGVlZDM4ODFmMmZlYTQyNTIyNTU1NDdjZGM4ZWYxODdjODg0OTNhNDIzODI2ZTYwNDIxOGEzNmJjMjkyMDM3NWRmMDdiNDIzY2ViYzhiOTMyMjdmMGU3ZWQxMjU3NThmYWZkNWUwYzJmYmQ1YjFjOGY3N2NlYjVlMDY=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
@@ -92,7 +94,7 @@ jhipster:
       enabled: false
       host: localhost
       port: 5000
-      ring-buffer-size: 512
+      queue-size: 512
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class

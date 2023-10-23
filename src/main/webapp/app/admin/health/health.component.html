@@ -28,7 +28,7 @@
               jhiTranslate="{{ 'health.status.' + componentHealth.value!.status }}"
             >
               {{
-                { UNKNOWN: 'INCONNU', UP: 'DISPONIBLE', DOWN: 'HORS SERVICE', OUT_OF_SERVICE: 'OUT_OF_SERVICE' }[
+                { UNKNOWN: 'INCONNU', UP: 'DISPONIBLE', OUT_OF_SERVICE: 'OUT_OF_SERVICE', DOWN: 'HORS SERVICE' }[
                   componentHealth.value!.status || 'UNKNOWN'
                 ]
               }}

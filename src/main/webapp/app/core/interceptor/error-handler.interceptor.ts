@@ -14,10 +14,10 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       tap({
         error: (err: HttpErrorResponse) => {
           if (!(err.status === 401 && (err.message === '' || err.url?.includes('api/account')))) {
-            this.eventManager.broadcast(new EventWithContent('jhipsterGhApp.httpError', err));
+            this.eventManager.broadcast(new EventWithContent('jhipsterGhGradleApp.httpError', err));
           }
         },
-      }),
+      })
     );
   }
 }

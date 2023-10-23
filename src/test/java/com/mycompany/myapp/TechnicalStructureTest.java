@@ -9,18 +9,17 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 
-@AnalyzeClasses(packagesOf = JhipsterGhApp.class, importOptions = DoNotIncludeTests.class)
+@AnalyzeClasses(packagesOf = JhipsterGhGradleApp.class, importOptions = DoNotIncludeTests.class)
 class TechnicalStructureTest {
 
     // prettier-ignore
     @ArchTest
     static final ArchRule respectsTechnicalArchitectureLayers = layeredArchitecture()
-        .consideringAllDependencies()
         .layer("Config").definedBy("..config..")
         .layer("Web").definedBy("..web..")
         .optionalLayer("Service").definedBy("..service..")
         .layer("Security").definedBy("..security..")
-        .optionalLayer("Persistence").definedBy("..repository..")
+        .layer("Persistence").definedBy("..repository..")
         .layer("Domain").definedBy("..domain..")
 
         .whereLayer("Config").mayNotBeAccessedByAnyLayer()
@@ -30,7 +29,7 @@ class TechnicalStructureTest {
         .whereLayer("Persistence").mayOnlyBeAccessedByLayers("Service", "Security", "Web", "Config")
         .whereLayer("Domain").mayOnlyBeAccessedByLayers("Persistence", "Service", "Security", "Web", "Config")
 
-        .ignoreDependency(belongToAnyOf(JhipsterGhApp.class), alwaysTrue())
+        .ignoreDependency(belongToAnyOf(JhipsterGhGradleApp.class), alwaysTrue())
         .ignoreDependency(alwaysTrue(), belongToAnyOf(
             com.mycompany.myapp.config.Constants.class,
             com.mycompany.myapp.config.ApplicationProperties.class

@@ -46,29 +46,33 @@
               class="form-text text-danger"
               *ngIf="registerForm.get('login')?.errors?.required"
               jhiTranslate="register.messages.validate.login.required"
-              >Votre nom d'utilisateur est obligatoire.</small
             >
+              Votre nom d'utilisateur est obligatoire.
+            </small>
 
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('login')?.errors?.minlength"
               jhiTranslate="register.messages.validate.login.minlength"
-              >Votre nom d'utilisateur doit contenir plus d'un caractère.</small
             >
+              Votre nom d'utilisateur doit contenir plus d'un caractère.
+            </small>
 
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('login')?.errors?.maxlength"
               jhiTranslate="register.messages.validate.login.maxlength"
-              >Votre nom d'utilisateur ne peut pas contenir plus de 50 caractères.</small
             >
+              Votre nom d'utilisateur ne peut pas contenir plus de 50 caractères.
+            </small>
 
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('login')?.errors?.pattern"
               jhiTranslate="register.messages.validate.login.pattern"
-              >Votre nom d'utilisateur est invalide.</small
             >
+              Votre nom d'utilisateur est invalide.
+            </small>
           </div>
         </div>
 
@@ -89,29 +93,33 @@
               class="form-text text-danger"
               *ngIf="registerForm.get('email')?.errors?.required"
               jhiTranslate="global.messages.validate.email.required"
-              >Votre email est requis.</small
             >
+              Votre email est requis.
+            </small>
 
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('email')?.errors?.invalid"
               jhiTranslate="global.messages.validate.email.invalid"
-              >Votre email n'est pas valide.</small
             >
+              Votre email n'est pas valide.
+            </small>
 
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('email')?.errors?.minlength"
               jhiTranslate="global.messages.validate.email.minlength"
-              >Votre email doit comporter au moins 5 caractères.</small
             >
+              Votre email doit comporter au moins 5 caractères.
+            </small>
 
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('email')?.errors?.maxlength"
               jhiTranslate="global.messages.validate.email.maxlength"
-              >Votre email ne doit pas comporter plus de 50 caractères.</small
             >
+              Votre email ne doit pas comporter plus de 50 caractères.
+            </small>
           </div>
         </div>
 
@@ -134,22 +142,25 @@
               class="form-text text-danger"
               *ngIf="registerForm.get('password')?.errors?.required"
               jhiTranslate="global.messages.validate.newpassword.required"
-              >Votre mot de passe est requis.</small
             >
+              Votre mot de passe est requis.
+            </small>
 
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('password')?.errors?.minlength"
               jhiTranslate="global.messages.validate.newpassword.minlength"
-              >Votre mot de passe doit comporter au moins 4 caractères.</small
             >
+              Votre mot de passe doit comporter au moins 4 caractères.
+            </small>
 
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('password')?.errors?.maxlength"
               jhiTranslate="global.messages.validate.newpassword.maxlength"
-              >Votre mot de passe ne doit pas comporter plus de 50 caractères.</small
             >
+              Votre mot de passe ne doit pas comporter plus de 50 caractères.
+            </small>
           </div>
 
           <jhi-password-strength-bar [passwordToCheck]="registerForm.get('password')!.value"></jhi-password-strength-bar>
@@ -179,22 +190,25 @@
               class="form-text text-danger"
               *ngIf="registerForm.get('confirmPassword')?.errors?.required"
               jhiTranslate="global.messages.validate.confirmpassword.required"
-              >Votre confirmation du mot de passe est requise.</small
             >
+              Votre confirmation du mot de passe est requise.
+            </small>
 
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('confirmPassword')?.errors?.minlength"
               jhiTranslate="global.messages.validate.confirmpassword.minlength"
-              >Votre confirmation du mot de passe doit comporter au moins 4 caractères.</small
             >
+              Votre confirmation du mot de passe doit comporter au moins 4 caractères.
+            </small>
 
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength"
               jhiTranslate="global.messages.validate.confirmpassword.maxlength"
-              >Votre confirmation du mot de passe ne doit pas comporter plus de 50 caractères.</small
             >
+              Votre confirmation du mot de passe ne doit pas comporter plus de 50 caractères.
+            </small>
           </div>
         </div>
 

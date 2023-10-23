@@ -15,7 +15,7 @@
 
 spring:
   application:
-    name: jhipster-gh
+    name: jhipster_gh_gradle
   # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: test
@@ -26,17 +26,20 @@ spring:
     host: localhost
   main:
     allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   messages:
     basename: i18n/messages
   task:
     execution:
-      thread-name-prefix: jhipster-gh-task-
+      thread-name-prefix: jhipster-gh-gradle-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: jhipster-gh-scheduling-
+      thread-name-prefix: jhipster-gh-gradle-scheduling-
       pool:
         size: 20
   thymeleaf:
@@ -53,9 +56,9 @@ server:
 # ===================================================================
 jhipster:
   clientApp:
-    name: 'jhipsterGhApp'
+    name: 'jhipsterGhGradleApp'
   mail:
-    from: jhipster-gh@localhost.com
+    from: jhipster_gh_gradle@localhost.com
     base-url: http://127.0.0.1:8080
   logging:
     # To test json console appender
@@ -64,15 +67,14 @@ jhipster:
       enabled: false
       host: localhost
       port: 5000
-      ring-buffer-size: 512
+      queue-size: 512
   security:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: YzMzYzk5MGZmMzAwN2U2OGRkOTQwOGVkNTVkNDg1YzJhZmMyYzNhOTQyNjZiZWQ1MmMwYTBlZDYxYjk0ZGE0ZWVkODcyMzI5Y2Q2OWZmYzBmMzg1ZWYzMzE2N2ZkYzk2NDAwMGRlOTQzZGMyN2RjMTFkN2NlZmVmNzhlYjRkOTI=
+        base64-secret: NDNmMDY0ZGVlZDM4ODFmMmZlYTQyNTIyNTU1NDdjZGM4ZWYxODdjODg0OTNhNDIzODI2ZTYwNDIxOGEzNmJjMjkyMDM3NWRmMDdiNDIzY2ViYzhiOTMyMjdmMGU3ZWQxMjU3NThmYWZkNWUwYzJmYmQ1YjFjOGY3N2NlYjVlMDY=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
-        token-validity-in-seconds-for-remember-me: 86400
 
 # ===================================================================
 # Application specific properties

@@ -30,18 +30,20 @@ management:
       base-path: /management
       exposure:
         include:
-          - configprops
-          - env
-          - health
-          - info
-          - jhimetrics
-          - jhiopenapigroups
-          - logfile
-          - loggers
-          - prometheus
-          - threaddump
-          - caches
-          - liquibase
+          [
+            'configprops',
+            'env',
+            'health',
+            'info',
+            'jhimetrics',
+            'jhiopenapigroups',
+            'logfile',
+            'loggers',
+            'prometheus',
+            'threaddump',
+            'caches',
+            'liquibase',
+          ]
   endpoint:
     health:
       show-details: when_authorized
@@ -63,9 +65,10 @@ management:
   health:
     mail:
       enabled: false # When using the MailService, configure an SMTP server and set this to true
-  prometheus:
-    metrics:
-      export:
+  metrics:
+    export:
+      # Prometheus is the default metrics backend
+      prometheus:
         enabled: true
         step: 60
     enable:
@@ -89,7 +92,7 @@ management:
 
 spring:
   application:
-    name: jhipster-gh
+    name: jhipster_gh_gradle
   profiles:
     # The commented value for `active` can be replaced with valid Spring profiles to load.
     # Otherwise, it will be filled in by gradle when building the JAR file
@@ -111,8 +114,6 @@ spring:
     open-in-view: false
     properties:
       hibernate.jdbc.time_zone: UTC
-      hibernate.timezone.default_storage: NORMALIZE
-      hibernate.type.preferred_instant_jdbc_type: TIMESTAMP
       hibernate.id.new_generator_mappings: true
       hibernate.connection.provider_disables_autocommit: true
       hibernate.cache.use_second_level_cache: true
@@ -127,24 +128,24 @@ spring:
     hibernate:
       ddl-auto: none
       naming:
-        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
   messages:
     basename: i18n/messages
   main:
     allow-bean-definition-overriding: true
   mvc:
-    problemdetails:
-      enabled: true
+    pathmatch:
+      matching-strategy: ant_path_matcher
   task:
     execution:
-      thread-name-prefix: jhipster-gh-task-
+      thread-name-prefix: jhipster-gh-gradle-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: jhipster-gh-scheduling-
+      thread-name-prefix: jhipster-gh-gradle-scheduling-
       pool:
         size: 2
   thymeleaf:
@@ -175,7 +176,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'jhipsterGhApp'
+    name: 'jhipsterGhGradleApp'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #   allowed-origins: "http://localhost:8100,http://localhost:9000"
@@ -185,12 +186,12 @@ jhipster:
   #   allow-credentials: true
   #   max-age: 1800
   mail:
-    from: jhipster-gh@localhost
+    from: jhipster_gh_gradle@localhost
   api-docs:
-    default-include-pattern: /api/**
-    management-include-pattern: /management/**
-    title: Jhipster Gh API
-    description: Jhipster Gh API documentation
+    default-include-pattern: ${server.servlet.context-path:}/api/**
+    management-include-pattern: ${server.servlet.context-path:}/management/**
+    title: Jhipster Gh Gradle API
+    description: Jhipster Gh Gradle API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:

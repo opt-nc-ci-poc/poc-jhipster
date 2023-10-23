@@ -43,7 +43,7 @@ describe('User Service', () => {
       const req = httpMock.expectOne({ method: 'GET' });
       req.flush('Internal Server Error', {
         status: 500,
-        statusText: 'Internal Server Error',
+        statusText: 'Inernal Server Error',
       });
       expect(expectedResult).toEqual(500);
     });
@@ -77,7 +77,7 @@ describe('User Service', () => {
       });
 
       it('should add only unique User to an array', () => {
-        const userArray: IUser[] = [{ id: 123 }, { id: 456 }, { id: 2000 }];
+        const userArray: IUser[] = [{ id: 123 }, { id: 456 }, { id: 27699 }];
         const userCollection: IUser[] = [{ id: 456 }];
         expectedResult = service.addUserToCollectionIfMissing(userCollection, ...userArray);
         expect(expectedResult).toHaveLength(3);
