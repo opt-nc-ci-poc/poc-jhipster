@@ -92,6 +92,23 @@ jobs:
       - name: 🚀 Deploy k8s
         if: github.ref == 'refs/heads/main'
         run: |-
-          kubectl -n opt-nc-ci-poc apply -f k8s
+          cat <<EOF >./kustomization.yaml
+          resources:
+            - k8s/
+            patches:
+            - target:
+                kind: Deployment
+              # Positionne les secret pour le pull de l'image depuis ghcr.io
+              # Force le pull de l'image depuis ghcr.io (pour les images à tag fixe)
+              patch: |
+                - op: replace
+                  path: /spec/template/spec/imagePullSecrets
+                  value:
+                    - name: ghcr.io
+                - op: replace
+                  path: /spec/template/spec/containers/0/imagePullPolicy
+                  value: Always
+          EOF
+          kubectl -n opt-nc-ci-poc apply -k .
           kubectl -n opt-nc-ci-poc rollout status deployment/jhipster-gradle
           kubectl -n opt-nc-ci-poc get services -o wide
