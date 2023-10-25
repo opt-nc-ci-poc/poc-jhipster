@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jhipster-gradle-postgresql-pvc
+  namespace: opt-nc-ci-poc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,7 +27,8 @@ spec:
     spec:
       volumes:
         - name: data
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: jhipster-gradle-postgresql-pvc
       containers:
         - name: postgres
           image: postgres:14.5
