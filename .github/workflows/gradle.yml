@@ -82,7 +82,7 @@ jobs:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
           # Get the GKE credentials so we can deploy to the cluster
-      - uses: google-github-actions/get-gke-credentials@v1
+      - uses: google-github-actions/get-gke-credentials@v2
         if: github.ref == 'refs/heads/main'
         with:
           cluster_name: ${{ vars.GKE_CLUSTER }}
